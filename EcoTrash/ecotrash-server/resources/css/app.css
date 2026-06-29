@@ -1,0 +1,1405 @@
+/* ==========================================================
+   ECOTRASH DASHBOARD CSS V2
+   PART 1 — FOUNDATION / LAYOUT / SIDEBAR / TOPBAR
+========================================================== */
+
+/* ==========================================================
+   1. ROOT VARIABLES
+========================================================== */
+
+:root {
+    --eco-primary: #1f9254;
+    --eco-primary-hover: #187645;
+
+    --eco-bg: #f5f7fb;
+    --eco-surface: #ffffff;
+
+    --eco-border: #e4e9f2;
+    --eco-border-soft: #edf2f7;
+
+    --eco-text: #0f172a;
+    --eco-text-soft: #64748b;
+    --eco-text-muted: #94a3b8;
+
+    --eco-danger: #dc2626;
+    --eco-warning: #d97706;
+    --eco-info: #2563eb;
+    --eco-success: #16a34a;
+
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 24px;
+    --radius-xl: 28px;
+
+    --shadow-soft: 0 2px 10px rgba(15, 23, 42, 0.04);
+
+    --transition: 0.2s ease;
+}
+
+/* ==========================================================
+   2. RESET & GLOBAL
+========================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: var(--eco-bg);
+    color: var(--eco-text);
+}
+
+img,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* ==========================================================
+   3. DASHBOARD LAYOUT
+========================================================== */
+
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.main-content {
+    padding: 28px;
+}
+
+/* ==========================================================
+   4. TOPBAR
+========================================================== */
+
+.topbar {
+    height: 72px;
+    background: var(--eco-surface);
+    border-bottom: 1px solid var(--eco-border);
+
+    padding: 0 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--eco-text);
+}
+
+.page-subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: var(--eco-text-soft);
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.date-box,
+.user-box {
+    background: #fff;
+    border: 1px solid var(--eco-border);
+
+    border-radius: 14px;
+    padding: 10px 18px;
+
+    transition: var(--transition);
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.user-box {
+    min-width: 230px;
+    justify-content: space-between;
+    gap: 10px;
+    text-align: left;
+    width: auto;
+}
+
+.user-box .dropdown-toggle::after {
+    margin-left: 0.8rem;
+}
+
+.date-box:hover,
+.user-box:hover {
+    border-color: #d5dde8;
+}
+
+.user-box .text-muted {
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+.user-box strong {
+    display: block;
+    font-size: 14px;
+}
+
+.topbar-right .dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+}
+
+.sidebar-toggle {
+    width: 52px;
+    height: 52px;
+
+    border: 1px solid var(--eco-border);
+    border-radius: 14px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    transition: var(--transition);
+}
+
+.sidebar-toggle:hover {
+    background: #f8fafc;
+}
+
+/* ==========================================================
+   5. SIDEBAR
+========================================================== */
+
+.sidebar {
+    width: 250px;
+    background: var(--eco-surface);
+    border-right: 1px solid var(--eco-border);
+
+    transition: transform 0.3s ease, width 0.3s ease, border 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+    padding: 0 12px;
+    min-width: 0;
+    position: relative;
+}
+
+.sidebar.collapsed {
+    width: 0 !important;
+    min-width: 0;
+    max-width: 0;
+    padding: 0 !important;
+    border-right: none;
+    transform: translateX(-250px);
+}
+
+.sidebar.collapsed .sidebar-container {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-container {
+    height: 100vh;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ---------- Brand ---------- */
+
+.brand-section {
+    padding: 32px 14px 24px;
+}
+
+.brand-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--eco-primary);
+}
+
+.brand-subtitle {
+    margin-top: 4px;
+    font-size: 13px;
+    color: var(--eco-text-soft);
+}
+
+/* ---------- Menu ---------- */
+
+.sidebar-section {
+    padding: 0 12px;
+    margin-bottom: 28px;
+}
+
+.sidebar-title {
+    margin-bottom: 14px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+
+    color: var(--eco-text-muted);
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-link,
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+
+    min-height: 52px;
+
+    padding: 14px 18px;
+    border-radius: 18px;
+
+    color: #24324b;
+    font-size: 15px;
+    font-weight: 500;
+
+    transition: var(--transition);
+}
+
+.sidebar-link:hover,
+.sidebar-menu a:hover {
+    background: #f3f7f5;
+}
+
+.sidebar-link.active,
+.sidebar-menu a.active {
+    background: #e8f7ef;
+    color: var(--eco-primary);
+    font-weight: 600;
+}
+
+/* ---------- Info Card ---------- */
+
+.sidebar-info-card {
+    margin: 12px 20px 18px;
+    padding: 20px;
+
+    border-radius: 24px;
+    border: 1px solid #e8edf4;
+
+    background: #f8fafc;
+}
+
+.sidebar-info-card small {
+    display: block;
+    margin-bottom: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: var(--eco-text-muted);
+}
+
+.sidebar-info-card h6 {
+    margin: 0 0 10px;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #23324a;
+}
+
+.sidebar-info-card p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.8;
+
+    color: var(--eco-text-soft);
+}
+
+/* ---------- Logout ---------- */
+
+.logout-wrapper {
+    padding: 0 14px 24px;
+}
+
+.logout-btn {
+    width: 100%;
+    min-height: 56px;
+
+    border: none;
+    border-radius: 18px;
+
+    background: var(--eco-danger);
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+.logout-btn:hover {
+    background: #b91c1c;
+}
+
+/* ==========================================================
+   6. RESPONSIVE
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .main-content {
+        padding: 22px;
+    }
+
+    .sidebar {
+        width: 230px;
+    }
+
+    .topbar {
+        padding: 0 18px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .main-content {
+        padding: 18px;
+    }
+
+    .page-title {
+        font-size: 18px;
+    }
+
+    .page-subtitle {
+        font-size: 12px;
+    }
+
+    .date-box,
+    .user-box {
+        padding: 8px 12px;
+    }
+
+    .topbar-right {
+        gap: 10px;
+    }
+}
+
+/* ==========================================================
+   PART 2 — DASHBOARD / CARD SYSTEM / STATUS
+========================================================== */
+
+/* ==========================================================
+   7. DASHBOARD HEADER
+========================================================== */
+
+.dashboard-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+
+    margin-bottom: 32px;
+}
+
+.dashboard-title {
+    margin: 0 0 10px;
+
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 1.05;
+
+    color: var(--eco-text);
+}
+
+.dashboard-subtitle {
+    margin: 0;
+
+    font-size: 18px;
+    color: var(--eco-text-soft);
+}
+
+/* ==========================================================
+   8. DASHBOARD CARD SYSTEM
+========================================================== */
+
+.dashboard-card,
+.content-card,
+.filter-card {
+    background: var(--eco-surface);
+
+    border: 1px solid var(--eco-border-soft);
+    border-radius: var(--radius-xl);
+
+    box-shadow: var(--shadow-soft);
+}
+
+.dashboard-card {
+    padding: 30px;
+}
+
+.content-card {
+    padding: 24px;
+}
+
+.filter-card {
+    padding: 24px;
+    margin-bottom: 28px;
+}
+
+/* ==========================================================
+   9. STATS GRID
+========================================================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.stat-card {
+    background: white;
+
+    border: 1px solid var(--eco-border-soft);
+    border-radius: var(--radius-xl);
+
+    padding: 30px;
+    min-height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-label {
+    font-size: 18px;
+    color: var(--eco-text-soft);
+}
+
+.stat-number {
+    margin-top: 16px;
+
+    font-size: 42px;
+    font-weight: 700;
+
+    line-height: 1;
+    color: var(--eco-text);
+}
+
+.stat-number.nominal {
+    font-size: 36px;
+}
+
+.stat-subtitle {
+    margin-top: 12px;
+
+    font-size: 14px;
+    color: var(--eco-text-muted);
+}
+
+/* ==========================================================
+   10. CARD CONTENT
+========================================================== */
+
+.card-label {
+    margin-bottom: 16px;
+
+    font-size: 18px;
+    color: var(--eco-text-soft);
+}
+
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    background: white;
+    border: 1px solid var(--eco-border-soft);
+    border-radius: 20px;
+    margin-bottom: 14px;
+}
+
+.activity-item:last-child {
+    margin-bottom: 0;
+}
+
+.activity-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--eco-text);
+}
+
+.activity-subtitle {
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--eco-text-soft);
+}
+
+.activity-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--eco-text);
+}
+
+.card-value {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+
+    color: var(--eco-text);
+}
+
+.card-number {
+    font-size: 72px;
+    font-weight: 700;
+
+    line-height: 1;
+    color: var(--eco-text);
+}
+
+.card-helper {
+    margin-top: 10px;
+
+    font-size: 14px;
+    color: var(--eco-text-muted);
+}
+
+/* ==========================================================
+   11. SUMMARY CARD
+========================================================== */
+
+.summary-card {
+    background: white;
+
+    border: 1px solid var(--eco-border-soft);
+    border-radius: 22px;
+
+    min-height: 120px;
+    padding: 24px;
+
+    transition: var(--transition);
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+}
+
+.summary-label {
+    margin-bottom: 14px;
+
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* states */
+
+.summary-pending {
+    background: #fffaf0;
+    border-color: #fde68a;
+}
+
+.summary-picked {
+    background: #f5f9ff;
+    border-color: #bfdbfe;
+}
+
+.summary-delivered {
+    background: #f6f2ff;
+    border-color: #d8b4fe;
+}
+
+.summary-completed {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.summary-cancelled {
+    background: #fff1f2;
+    border-color: #fecdd3;
+}
+
+/* ==========================================================
+   12. STATUS BADGE
+========================================================== */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 34px;
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* status colors */
+
+.status-success,
+.badge-success {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.status-warning {
+    background: #fff7ed;
+    color: #d97706;
+}
+
+.status-danger,
+.badge-danger {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.status-info {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+/* ==========================================================
+   13. PERFORMANCE SCORE
+========================================================== */
+
+.performance-score {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 38px;
+
+    padding: 8px 14px;
+
+    border-radius: 14px;
+
+    background: #e8f7ef;
+    color: var(--eco-primary);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ==========================================================
+   14. EMPTY STATE
+========================================================== */
+
+.empty-state {
+    text-align: center;
+    padding: 36px 24px;
+
+    color: var(--eco-text-muted);
+    font-size: 15px;
+}
+
+/* ==========================================================
+   15. SECTION
+========================================================== */
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* ==========================================================
+   16. CHART
+========================================================== */
+
+.chart-wrapper {
+    position: relative;
+    height: 320px;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+
+    .dashboard-title {
+        font-size: 44px;
+    }
+
+    .dashboard-subtitle {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .dashboard-title {
+        font-size: 36px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        min-height: 0;
+    }
+}
+
+/* ==========================================================
+   PART 3 — BUTTON / FORM / FILTER SYSTEM
+========================================================== */
+
+/* ==========================================================
+   17. BUTTON SYSTEM
+========================================================== */
+
+.eco-btn,
+.btn-primary-dashboard,
+.btn-filter-dashboard,
+.eco-filter-btn,
+.action-btn,
+.btn-approve-custom,
+.btn-reject-custom {
+    border: none;
+    border-radius: 22px;
+
+    min-height: 58px;
+    padding: 0 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+/* ---------- Primary ---------- */
+
+.eco-btn-primary,
+.btn-primary-dashboard,
+.eco-filter-btn,
+.btn-filter-dashboard {
+    background: var(--eco-primary);
+    color: white;
+}
+
+.eco-btn-primary:hover,
+.btn-primary-dashboard:hover,
+.eco-filter-btn:hover,
+.btn-filter-dashboard:hover {
+    background: var(--eco-primary-hover);
+    color: white;
+}
+
+    .range-filter {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .range-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 22px;
+        border-radius: 999px;
+        border: 1px solid #dbe4ee;
+        background: white;
+        color: #334155;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        transition: var(--transition);
+    }
+
+    .range-btn:hover {
+        background: #f8fafc;
+        border-color: var(--eco-primary);
+        color: var(--eco-primary);
+    }
+
+    .range-btn.active {
+        background: var(--eco-primary);
+        border-color: var(--eco-primary);
+        color: white;
+    }
+
+    .range-btn.active:hover {
+        background: var(--eco-primary-hover);
+        border-color: var(--eco-primary-hover);
+        color: white;
+    }
+
+.btn-approve-custom:hover,
+.action-btn.success:hover {
+    background: #dbf3e4;
+}
+
+/* ---------- Danger ---------- */
+
+.btn-reject-custom,
+.action-btn.danger {
+    background: #fdeaea;
+    color: var(--eco-danger);
+}
+
+.btn-reject-custom:hover,
+.action-btn.danger:hover {
+    background: #fbdada;
+}
+
+/* ---------- action group ---------- */
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================
+   18. FORM SYSTEM
+========================================================== */
+
+.custom-input,
+.dashboard-input,
+.dashboard-select,
+.form-control.custom-input,
+.form-select.custom-input {
+    width: 100%;
+
+    min-height: 68px;
+
+    border-radius: 24px !important;
+    border: 1.5px solid #dbe4ee !important;
+
+    background: white !important;
+
+    padding: 0 24px !important;
+
+    font-size: 16px !important;
+    font-weight: 500;
+
+    color: #172b4d !important;
+
+    box-shadow: none !important;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease;
+}
+
+/* ---------- focus ---------- */
+
+.custom-input:focus,
+.dashboard-input:focus,
+.dashboard-select:focus {
+    border-color: var(--eco-primary) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* ---------- placeholder ---------- */
+
+.custom-input::placeholder,
+.dashboard-input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.custom-input.rounded-pill {
+    border-radius: 999px !important;
+}
+
+/* ==========================================================
+   19. SELECT FIX
+========================================================== */
+
+select.custom-input,
+.form-select.custom-input,
+.dashboard-select {
+
+    cursor: pointer;
+
+    padding-right: 56px !important;
+
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: right 22px center;
+    background-size: 12px;
+}
+
+/* ==========================================================
+   20. FILTER SYSTEM
+========================================================== */
+
+.order-filter-form {
+    margin-bottom: 24px;
+}
+
+/* default filter card */
+
+.filter-card {
+    background: white;
+
+    border: 1px solid var(--eco-border-soft);
+    border-radius: var(--radius-xl);
+
+    padding: 24px;
+    margin-bottom: 28px;
+}
+
+/* button */
+
+.eco-filter-btn {
+    width: 100%;
+    min-height: 68px;
+}
+
+/* ==========================================================
+   21. FILTER RESPONSIVE
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .custom-input,
+    .dashboard-input,
+    .dashboard-select,
+    .eco-filter-btn {
+        min-height: 58px;
+        font-size: 15px !important;
+    }
+
+    .action-buttons {
+        justify-content: flex-start;
+    }
+}
+
+/* ==========================================================
+   PART 4 — TABLE / PAGINATION / DETAIL / DOCUMENTS
+========================================================== */
+
+/* ==========================================================
+   22. TABLE SYSTEM
+========================================================== */
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table-card {
+    background: white;
+    border: 1px solid var(--eco-border-soft);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background: #fafbfd;
+
+    padding: 22px 20px !important;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #334155;
+
+    border-bottom: 1px solid #e7edf5 !important;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: 22px 20px !important;
+
+    vertical-align: middle;
+    color: #334155;
+
+    border-bottom: 1px solid #eef2f7 !important;
+}
+
+.table tbody tr {
+    transition: var(--transition);
+}
+
+.table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* ==========================================================
+   23. PAGINATION
+========================================================== */
+
+.order-pagination-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+    flex-wrap: wrap;
+
+    margin-top: 28px;
+}
+
+.order-result-count {
+    color: var(--eco-text-soft);
+    font-size: 15px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.page-item {
+    margin: 0;
+}
+
+.page-link {
+    min-width: 46px;
+    height: 46px;
+
+    border-radius: 16px !important;
+    border: 1px solid #dbe4ee !important;
+
+    background: white !important;
+    color: #24324b !important;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+.page-link:hover {
+    background: #f3f6f9 !important;
+}
+
+.page-item.active .page-link {
+    background: var(--eco-primary) !important;
+    border-color: var(--eco-primary) !important;
+    color: white !important;
+}
+
+.page-item.disabled .page-link {
+    opacity: .45;
+}
+
+/* ==========================================================
+   24. PICKUP PHOTO
+========================================================== */
+
+.pickup-image-wrapper {
+    overflow: hidden;
+
+    border-radius: var(--radius-xl);
+    border: 1px solid #e7edf5;
+}
+
+.pickup-image {
+    width: 100%;
+    max-height: 420px;
+
+    object-fit: cover;
+    display: block;
+}
+
+.pickup-empty-state {
+    border: 2px dashed #dfe7f3;
+
+    border-radius: var(--radius-xl);
+
+    padding: 56px 24px;
+
+    text-align: center;
+
+    background: #f9fbff;
+}
+
+.pickup-empty-state h5 {
+    margin-bottom: 10px;
+    color: var(--eco-text);
+}
+
+.pickup-empty-state p {
+    margin: 0;
+    color: var(--eco-text-muted);
+}
+
+/* ==========================================================
+   25. COURIER DOCUMENT
+========================================================== */
+
+.document-card {
+    background: white;
+
+    border: 1px solid var(--eco-border-soft);
+    border-radius: var(--radius-xl);
+
+    padding: 22px;
+}
+
+.document-card h5 {
+    margin-bottom: 16px;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: var(--eco-text);
+}
+
+.document-image {
+    width: 100%;
+    height: 240px;
+
+    object-fit: contain;
+    background: #f8fafc;
+
+    border-radius: 22px;
+}
+
+.document-empty {
+    height: 240px;
+
+    border-radius: 22px;
+    border: 1px dashed #dbe4ee;
+
+    background: #f8fafc;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 20px;
+
+    color: var(--eco-text-muted);
+    font-size: 14px;
+}
+
+/* ==========================================================
+   26. EMPTY / UTILITY
+========================================================== */
+
+.empty-state {
+    padding: 36px 20px;
+    text-align: center;
+
+    color: var(--eco-text-muted);
+}
+
+.compact-card {
+    padding: 24px !important;
+}
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 320px;
+}
+
+/* ==========================================================
+   27. RESPONSIVE FINAL
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .table-card table,
+    .table-responsive table {
+        min-width: 820px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    .order-pagination-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pickup-image {
+        max-height: 280px;
+    }
+
+    .document-image,
+    .document-empty {
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .table thead th,
+    .table tbody td {
+        padding: 16px !important;
+    }
+
+    .pickup-image {
+        max-height: 240px;
+    }
+
+    .pickup-empty-state {
+        padding: 40px 20px;
+    }
+
+    .document-image,
+    .document-empty {
+        height: 200px;
+    }
+
+    .page-link {
+        min-width: 42px;
+        height: 42px;
+    }
+}
+
+/* ==========================================================
+   17. NOTIFICATIONS DROPDOWN
+   ========================================================== */
+.notification-item {
+    transition: background-color 0.2s ease;
+}
+.notification-item:hover {
+    background-color: #f8fafc !important;
+}
+.notification-item.read-notif {
+    background-color: #ffffff !important;
+    opacity: 0.75;
+}
+.notification-item.unread-notif {
+    background-color: #f0fdf4 !important;
+}
+.text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
